@@ -8,9 +8,6 @@ public record AtualizaDadosEspecificosClienteDTO(
 
         BigDecimal peso,
 
-        BigDecimal altura,
-
-        String observacoes
-
+        BigDecimal altura
 ) {
 }

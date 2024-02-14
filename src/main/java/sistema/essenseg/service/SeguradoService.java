@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import sistema.essenseg.dto.segurado.DadosListagemSegurado;
 import sistema.essenseg.dto.segurado.FiltrosSeguradoDTO;
+import sistema.essenseg.model.segurado.Segmentacao;
 import sistema.essenseg.repository.SeguradoRepository;
 
 @Service
@@ -19,6 +20,10 @@ public class SeguradoService {
     }
 
     public Page<DadosListagemSegurado> listarFiltrados(FiltrosSeguradoDTO filtros, Pageable page) {
-        return repository.findAll(filtros, page).map(DadosListagemSegurado::new);
+        Segmentacao segmentacao = null;
+        if(filtros.segmentacao() != null){
+            segmentacao = Segmentacao.valueOf(filtros.segmentacao());
+        }
+        return repository.findAll(filtros, page, segmentacao).map(DadosListagemSegurado::new);
     }
 }

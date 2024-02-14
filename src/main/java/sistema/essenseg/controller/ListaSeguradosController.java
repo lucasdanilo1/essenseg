@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sistema.essenseg.dto.segurado.DadosListagemSegurado;
 import sistema.essenseg.dto.segurado.FiltrosSeguradoDTO;
-import sistema.essenseg.model.segurado.Segurado;
-import sistema.essenseg.repository.SeguradoRepository;
 import sistema.essenseg.service.SeguradoService;
 
 @RestController
@@ -20,12 +18,10 @@ public class ListaSeguradosController {
     @Autowired
     SeguradoService service;
 
-    @Transactional
     @GetMapping("lista")
     public ResponseEntity<Page<DadosListagemSegurado>> segurados(@PageableDefault(size = 30) Pageable page) {
         return ResponseEntity.ok().body(service.listar(page));
     }
-
     @Transactional
     @PostMapping("lista/filtrada")
     public ResponseEntity<Page<DadosListagemSegurado>> seguradosFiltrados(@RequestBody FiltrosSeguradoDTO filtros, @PageableDefault(size = 30) Pageable page) {

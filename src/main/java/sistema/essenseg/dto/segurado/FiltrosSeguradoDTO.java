@@ -1,19 +1,18 @@
 package sistema.essenseg.dto.segurado;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import sistema.essenseg.model.segurado.Segmentacao;
-
 import java.time.LocalDate;
 
 public record FiltrosSeguradoDTO(
 
         String filtroGlobal,
-        Segmentacao segmentacao,
+        String segmentacao,
         Long administradoraId,
         Long operadoraId,
-        @JsonFormat(pattern = "dd/MM/yyyy")
-        LocalDate primeiraDataVigencia,
-        LocalDate segundaDataVigencia
+        LocalDate dataVigencia1,
+        LocalDate dataVigencia2,
+        LocalDate dataNascimento1,
+        LocalDate dataNascimento2
 
 ) {
+
 }

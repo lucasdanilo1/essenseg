@@ -34,9 +34,6 @@ public class Cliente extends Segurado {
                 this.dadosPessoaisSegurado.checaCamposEAtualiza(dados.atualizaDadosSeguradoDTO());
                 this.dadosContratacaoSegurado.checaCamposEAtualiza(dados.atualizaDadosSeguradoDTO());
             }
-            if(dados.atualizaDadosEspecificosClienteDTO() != null){
-                this.dadosEspecificosCliente.checaCamposEAtualiza(dados);
-            }
             if(dados.observacoes() != null){
                 if(!dados.observacoes().isEmpty()){
                     this.observacoes = dados.observacoes();

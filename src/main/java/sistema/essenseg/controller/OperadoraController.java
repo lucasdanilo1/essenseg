@@ -24,7 +24,7 @@ public class OperadoraController {
     public ResponseEntity<String> cadastro(@Valid @RequestBody DadosOperadoraDTO dados){
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
                 .replacePath("listagem/operadoras")
-                .build().toUri()).body(service.cadastrar(dados).getNome());
+                .build().toUri()).body(service.cadastrar(dados));
     }
 
     @GetMapping("lista")

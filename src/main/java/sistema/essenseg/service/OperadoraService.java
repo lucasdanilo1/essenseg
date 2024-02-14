@@ -1,5 +1,7 @@
 package sistema.essenseg.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -20,12 +22,23 @@ public class OperadoraService {
         return repository.findAll().stream().map(DadosListagemOperadora::new).toList();
     }
 
-    public Operadora cadastrar(DadosOperadoraDTO dados){
+    public String cadastrar(DadosOperadoraDTO dados){
         if(repository.existsByNome(dados.nome())){
             throw new DataIntegrityViolationException("Operadora já cadastrada");
         }
             Operadora operadora = new Operadora(dados);
             repository.save(operadora);
-            return operadora;
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String json;
+
+        try {
+            json = objectMapper.writeValueAsString(operadora.getNome());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+            return json;
     }
 }

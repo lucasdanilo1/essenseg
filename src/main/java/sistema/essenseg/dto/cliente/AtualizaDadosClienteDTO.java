@@ -6,8 +6,6 @@ public record AtualizaDadosClienteDTO(
 
         AtualizaDadosSeguradoDTO atualizaDadosSeguradoDTO,
 
-        AtualizaDadosEspecificosClienteDTO atualizaDadosEspecificosClienteDTO,
-
         String observacoes
 
 ) {
