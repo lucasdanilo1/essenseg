@@ -13,5 +13,13 @@ public interface OperadorasAdministradorasRepository extends JpaRepository<Opera
     @Query("select oa.administradora from OperadoraAdministradora oa where oa.operadora.id = :operadoraId")
     List<Administradora> findAdministradorasByOperadoraId(@Param("operadoraId") Long operadoraId);
 
+    @Query(value = "SELECT * FROM operadora_administradora ORDER BY operadora_id", nativeQuery = true)
+    List<OperadoraAdministradora> findAll();
+
+    @Query(""" 
+           SELECT a FROM Administradora a WHERE NOT EXISTS
+           (SELECT oa FROM OperadoraAdministradora oa WHERE oa.administradora = a AND oa.operadora.id = :operadoraId)
+            """)
+    List<Administradora> findAdministradoraSemRelacaoComOperadora(@Param("operadoraId") Long operadoraId);
 
 }

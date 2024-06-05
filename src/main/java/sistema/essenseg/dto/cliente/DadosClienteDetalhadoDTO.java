@@ -9,6 +9,8 @@ public class DadosClienteDetalhadoDTO {
 
         Long id;
 
+        Boolean ativo;
+
         DadosSeguradoDetalhadoDTO dadosSeguradoDetalhadoDTO;
 
         DadosEspecificosClienteDetalhadoDTO dadosEspecificosClienteDetalhadoDTO;
@@ -17,6 +19,7 @@ public class DadosClienteDetalhadoDTO {
 
         public DadosClienteDetalhadoDTO(Cliente cliente){
                 this.id = cliente.getId();
+                this.ativo = cliente.isAtivo();
                 this.dadosSeguradoDetalhadoDTO = new DadosSeguradoDetalhadoDTO(cliente.getDadosPessoaisSegurado(), cliente.getDadosContratacaoSegurado());
                 this.dadosEspecificosClienteDetalhadoDTO = new DadosEspecificosClienteDetalhadoDTO(cliente.getDadosEspecificosCliente());
                 this.observacoes = cliente.getObservacoes();

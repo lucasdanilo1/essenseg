@@ -32,4 +32,9 @@ public class OperadoraController {
         return ResponseEntity.ok().body(service.listar());
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<DadosOperadoraDTO> operadora(@PathVariable Long id){
+        return ResponseEntity.ok().body(service.operadora(id));
+    }
+
 }

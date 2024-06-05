@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 
 public record DadosEspecificosCadastroClienteDTO(
 
-        @CPF
         @NotNull
         String cpf,
 

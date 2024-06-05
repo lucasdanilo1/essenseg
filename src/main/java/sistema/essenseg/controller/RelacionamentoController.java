@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sistema.essenseg.dto.DadosListagemRelacoesDTO;
 import sistema.essenseg.dto.administradora.DadosListagemAdministradoraDTO;
 import sistema.essenseg.dto.relacionamento.DadosRelacionamentoDTO;
 import sistema.essenseg.service.RelacionamentoService;
@@ -24,9 +25,20 @@ public class RelacionamentoController {
         return service.relacionar(dados);
     }
 
+    @GetMapping("/administradora-operadora/listagem")
+    public ResponseEntity<List<DadosListagemRelacoesDTO>> listarRelacoes(){
+        return service.listarRelacoes();
+    }
+
     @GetMapping("/administradora/lista/operadora/{id}")
-    @Transactional
-    public ResponseEntity<List<DadosListagemAdministradoraDTO>> relacionar(@PathVariable Long id){
+    public ResponseEntity<List<DadosListagemAdministradoraDTO>> obterAdministradorasPorOperadora(@PathVariable Long id){
         return service.listaAdministradoraPorOperadoraId(id);
     }
+
+    @GetMapping("/administradoras/disponiveis/operadora/{id}")
+    public ResponseEntity<List<DadosListagemAdministradoraDTO>> obterAdministradorasSemRelacaoComOperadora(@PathVariable Long id){
+        return service.listaAdministradorasSemRelacaoComOperadora(id);
+    }
+
+
 }

@@ -26,8 +26,8 @@ public class OperadoraService {
         if(repository.existsByNome(dados.nome())){
             throw new DataIntegrityViolationException("Operadora já cadastrada");
         }
-            Operadora operadora = new Operadora(dados);
-            repository.save(operadora);
+        Operadora operadora = new Operadora(dados);
+        repository.save(operadora);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -40,5 +40,9 @@ public class OperadoraService {
         }
 
             return json;
+    }
+
+    public DadosOperadoraDTO operadora(Long id) {
+        return new DadosOperadoraDTO(repository.getReferenceById(id));
     }
 }

@@ -39,7 +39,7 @@ public class AuthController {
 
         var token = service.geradorToken((Usuario) auth.getPrincipal());
 
-        return ResponseEntity.ok(new RespostaLoginDTO(token));
+        return ResponseEntity.ok(new RespostaLoginDTO(token, dados.login()));
     }
 
     @Transactional

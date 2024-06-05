@@ -13,8 +13,9 @@ import java.time.LocalDate;
 @Setter
 public class DadosListagemSegurado {
 
-    String tipo;
     Long id;
+    Boolean ativo;
+    String tipo;
     LocalDate dataCadastro;
     String nome;
     String telefone;
@@ -24,6 +25,7 @@ public class DadosListagemSegurado {
 
     public DadosListagemSegurado(Segurado segurado){
         this.id = segurado.getId();
+        this.ativo = segurado.isAtivo();
         this.telefone = segurado.getDadosPessoaisSegurado().getTelefone();
         this.dataCadastro = segurado.getDataDoCadastro();
         this.email = segurado.getDadosPessoaisSegurado().getEmail();

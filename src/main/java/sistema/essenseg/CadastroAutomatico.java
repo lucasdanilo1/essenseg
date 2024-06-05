@@ -30,11 +30,11 @@ public class CadastroAutomatico implements ApplicationRunner {
 	public void run(ApplicationArguments args) {
 		try{
 
-			this.opService.cadastrar(new DadosOperadoraDTO("Ideal Saúde")); //ID 1
-			this.opService.cadastrar(new DadosOperadoraDTO("Univida")); //ID 2
-			this.opService.cadastrar(new DadosOperadoraDTO("Hapivida")); //ID 3
-			this.opService.cadastrar(new DadosOperadoraDTO("Blue")); //ID 4
-			this.opService.cadastrar(new DadosOperadoraDTO("Ceam Brasil")); //ID 5
+			this.opService.cadastrar(new DadosOperadoraDTO(null, "Ideal Saúde")); //ID 1
+			this.opService.cadastrar(new DadosOperadoraDTO(null, "Univida")); //ID 2
+			this.opService.cadastrar(new DadosOperadoraDTO(null, "Hapivida")); //ID 3
+			this.opService.cadastrar(new DadosOperadoraDTO(null, "Blue")); //ID 4
+			this.opService.cadastrar(new DadosOperadoraDTO(null, "Ceam Brasil")); //ID 5
 
 			this.admService.cadastrar(new DadosAdministradoraDTO("EasyPlan")); //ID 1
 			this.admService.cadastrar(new DadosAdministradoraDTO("Qualicorp")); //ID 2

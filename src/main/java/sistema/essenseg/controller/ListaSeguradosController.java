@@ -18,13 +18,25 @@ public class ListaSeguradosController {
     @Autowired
     SeguradoService service;
 
+    @GetMapping("total-segurados")
+    public ResponseEntity<Long> totalSegurados() {
+        return ResponseEntity.ok().body(service.totalSegurados());
+    }
+
+    @DeleteMapping("inativar-ativar/{id}")
+    public ResponseEntity<?> inativarAtivarSegurado(@PathVariable Long id){
+        service.inativarAtivar(id);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("lista")
-    public ResponseEntity<Page<DadosListagemSegurado>> segurados(@PageableDefault(size = 30) Pageable page) {
+    public ResponseEntity<Page<DadosListagemSegurado>> segurados(@PageableDefault(size = 100) Pageable page) {
         return ResponseEntity.ok().body(service.listar(page));
     }
+
     @Transactional
     @PostMapping("lista/filtrada")
-    public ResponseEntity<Page<DadosListagemSegurado>> seguradosFiltrados(@RequestBody FiltrosSeguradoDTO filtros, @PageableDefault(size = 30) Pageable page) {
+    public ResponseEntity<Page<DadosListagemSegurado>> seguradosFiltrados(@RequestBody FiltrosSeguradoDTO filtros, @PageableDefault(size = 100) Pageable page) {
         return ResponseEntity.ok().body(service.listarFiltrados(filtros, page));
     }
 }

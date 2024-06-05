@@ -31,11 +31,12 @@ public interface SeguradoRepository extends JpaRepository<Segurado, Long>, Repos
             AND (:#{#filtro.dataNascimento2} IS NULL OR s.dadosPessoaisSegurado.dataNascimento < :#{#filtro.dataNascimento2})
             AND (:#{#filtro.dataVigencia1} IS NULL OR s.dadosContratacaoSegurado.vigencia > :#{#filtro.dataVigencia1})
             AND (:#{#filtro.dataVigencia2} IS NULL OR s.dadosContratacaoSegurado.vigencia < :#{#filtro.dataVigencia2})
-            ORDER BY s.dadosPessoaisSegurado.nome ASC
+            ORDER BY s.ativo DESC, s.dadosPessoaisSegurado.nome ASC
     """)
     Page<Segurado> findAll(@Param("filtro") FiltrosSeguradoDTO filtros, Pageable pageable, @Param("segmentacao") Segmentacao segmentacao);
 
     @Override
-    @Query("SELECT s FROM Segurado s ORDER BY s.dadosPessoaisSegurado.nome ASC")
+    @Query("SELECT s FROM Segurado s ORDER BY s.ativo DESC, s.dadosPessoaisSegurado.nome ASC")
     Page<Segurado> findAll(Pageable pageable);
+
 }

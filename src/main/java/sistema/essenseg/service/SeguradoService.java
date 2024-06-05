@@ -26,4 +26,14 @@ public class SeguradoService {
         }
         return repository.findAll(filtros, page, segmentacao).map(DadosListagemSegurado::new);
     }
+
+    public Long totalSegurados() {
+        return repository.count();
+    }
+
+    public void inativarAtivar(Long id) {
+        var segurado = repository.getReferenceById(id);
+        segurado.setAtivo(!segurado.isAtivo());
+        repository.save(segurado);
+    }
 }

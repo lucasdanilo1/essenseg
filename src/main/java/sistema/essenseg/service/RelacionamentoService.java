@@ -3,6 +3,7 @@ package sistema.essenseg.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import sistema.essenseg.dto.DadosListagemRelacoesDTO;
 import sistema.essenseg.dto.administradora.DadosListagemAdministradoraDTO;
 import sistema.essenseg.dto.relacionamento.DadosRelacionamentoDTO;
 import sistema.essenseg.model.Administradora;
@@ -38,4 +39,11 @@ public class RelacionamentoService {
         return ResponseEntity.ok().body(operadorasAdministradorasRepository.findAdministradorasByOperadoraId(id).stream().map(DadosListagemAdministradoraDTO::new).toList());
     }
 
+    public ResponseEntity<List<DadosListagemRelacoesDTO>> listarRelacoes(){
+        return ResponseEntity.ok().body(operadorasAdministradorasRepository.findAll().stream().map(DadosListagemRelacoesDTO::new).toList());
+    }
+
+    public ResponseEntity<List<DadosListagemAdministradoraDTO>> listaAdministradorasSemRelacaoComOperadora(Long id) {
+        return ResponseEntity.ok().body(operadorasAdministradorasRepository.findAdministradoraSemRelacaoComOperadora(id).stream().map(DadosListagemAdministradoraDTO::new).toList());
+    }
 }
